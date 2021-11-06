@@ -1,6 +1,8 @@
 # Dungeon generator
 Aineopintojen harjoitustyö - tietorakenteet ja algoritmit - dungeon generator
 
+## Dokumentit
+
 * [Määrittelydokumentti](doc/project_definition.md)
 
 <!-- 
@@ -12,3 +14,7 @@ Aineopintojen harjoitustyö - tietorakenteet ja algoritmit - dungeon generator
 * [Käyttöohje](doc/user_instructions.md)
 
 -->
+
+## Viikkoraportit
+
+* [Viikko 1](doc/viikkoraportti_1.md)
