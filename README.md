@@ -1,2 +1,4 @@
-# tiralabra_dungeon_generator
+# Dungeon generator
 Aineopintojen harjoitustyö - tietorakenteet ja algoritmit - dungeon generator
+
+
