@@ -61,6 +61,12 @@ Aikavaatimus on luokkaa O(k^n) luvun n ollessa vaikeustasosta käänteisestä ri
 määrä ja k tasoon lisättävien vihollisten ja objektien 
 määrä jotka on testattava aina jokaisen reitin suhteen alusta loppuun. 
 
+### Mahdollisia ongelmia
+
+Avainten ja niillä avattavien ovien lisääminen tasoon saattaa olla ylläkuvatulla
+tavalla suunniteltuna ylivoimaista ja onkin todennäköistä että avainten ja ovien
+käyttö pitää jättää pois kokonaan tai sitten muokata algoritmia huomattavasti.
+
 ### Lähteet
 
 [1] Sokkelon generointialgoritmit https://en.wikipedia.org/wiki/Maze_generation_algorithm
