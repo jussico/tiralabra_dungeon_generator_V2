@@ -5,11 +5,13 @@ Aineopintojen harjoitustyö - tietorakenteet ja algoritmit - dungeon generator
 
 * [Määrittelydokumentti](doc/project_definition.md)
 
+* [Testausdokumentti](doc/performance.md)
+
 <!-- 
 
 * [Toteutusdokumentti](doc/implementation.md)
 
-* [Testausdokumentti](doc/performance.md)
+
 
 * [Käyttöohje](doc/user_instructions.md)
 
@@ -24,4 +26,6 @@ Aineopintojen harjoitustyö - tietorakenteet ja algoritmit - dungeon generator
 * [Viikko 2](doc/viikkoraportit/viikkoraportti_2.md)
 
 * [Viikko 3](doc/viikkoraportit/viikkoraportti_3.md)
+
+* [Viikko 4](doc/viikkoraportit/viikkoraportti_4.md)
 
