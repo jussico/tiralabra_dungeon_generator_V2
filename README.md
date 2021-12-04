@@ -29,3 +29,5 @@ Aineopintojen harjoitustyö - tietorakenteet ja algoritmit - dungeon generator
 
 * [Viikko 4](doc/viikkoraportit/viikkoraportti_4.md)
 
+* [Viikko 5](doc/viikkoraportit/viikkoraportti_5.md)
+
