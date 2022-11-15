@@ -1,7 +1,7 @@
 build/
 logia.txt
 .pytest_cache/
-htmlcov/
+/htmlcov/
 __pycache__/
 .coverage
 poetry.lock
