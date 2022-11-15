@@ -4,14 +4,13 @@
 
 Opinto-ohjelma: Tietojenkäsittelytieteen kandidaatti
 
-Dokumentaatiossa käytetty kieli: Suomi
+Dokumentaatiossa käytetty kieli: Suomi, Englanti
 
 ### Ohjelmointikieli
 
-Tarkoitus on käyttää Python-kieltä. Optiona
-vaihto Julia tai C++ -kieleen jos näyttää siltä että Python on liian hidas.
+Tarkoitus on käyttää Python-kieltä. Mahdollisesti testata myös ainakin jotain algoritmia c-kielellä.
 
-Myös C, C#, Java ja Javascript ovat tuttuja kieliä.
+Myös Bash, C++, C#, Java, Julia, Javascript ja Typescript ovat tuttuja kieliä.
 
 ### Algoritmit ja tietorakenteet
 

@@ -9,11 +9,11 @@ mkdir -p build
 
 declare -A commands
 commands=(
-    ['cave_generator']='src/cave_generator.py'    
+    ['cave_generator']='src/generator/cave_generator.py'    
 )
-    # ['dfs_generator']='src/dfs_generator.py'    
+    # ['dfs_generator']='src/main/dfs_generator.py'    
 
-    # ['cave_generator']='python src/cave_generator.py'    
+    # ['cave_generator']='python src/main/cave_generator.py'    
     # ['ls']='/usr/bin/ls'    
     # ['ls_last']='/usr/bin/ls -last'    
     # ['stress']='/usr/bin/stress --cpu 1 --io 1 --vm 1 --vm-bytes 1024M --timeout 10'    

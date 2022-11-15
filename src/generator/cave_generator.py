@@ -1,5 +1,5 @@
 
-from cave import Cave
+from generator.cave import Cave
 
 nada = Cave.nada
 owall = Cave.owall
