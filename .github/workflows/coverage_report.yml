@@ -1,5 +1,8 @@
 name: 'coverage'
 on:
+    push:
+        branches:
+            -main
     pull_request:
         branches:
             - master
@@ -13,4 +16,3 @@ jobs:
             with:
                 coverageFile: doc/resource/coverage.xml
                 token: ${{ secrets.GITHUB_TOKEN }}
-                
