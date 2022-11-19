@@ -22,15 +22,23 @@ poetry run pytest
 poetry run coverage run --branch -m pytest
 ```
 
-#### coverage-raportin luominen
+#### coverage-raportin luominen html
 ```bash
 poetry run coverage html
 ```
 
+#### coverage-raportin luominen html
+```bash
+poetry run coverage xml
+```
+
 #### Testien tulokset
 
-##### coverage raportti
-[coverage report](resource/htmlcov/index.html)
+##### coverage html raportti
+[coverage HTML report](resource/htmlcov/index.html)
+
+##### coverage xml raportti
+[coverage XML report](resource/coverage.xml)
 
 
 ## Suorituskyvin testaus
