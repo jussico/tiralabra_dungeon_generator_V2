@@ -2,6 +2,10 @@
 
 ## Yksikkötestaus
 
+Koodin looginen toimivuus testataan yksikkötestauksella. Testataan vain yksittäisten funktioiden toimivuutta.
+
+Huom: Sokkeloiden oikeellisuuden testaus ei kuulu yksikkötesteihin vaan se testataan erikseen omilla kutsuillaan.
+
 Käytetty kirjastoja:
 
 Unittest:
