@@ -1,5 +1,5 @@
 
-class Util:
+class FileLogger:
 
     def __init__(self):
         my_name = type(self).__name__
@@ -9,11 +9,6 @@ class Util:
         with open('logia.txt', 'a') as logia:
             print(jotain, file=logia)
         logia.close()
-
-util_instance = Util()
-
-def logita(jotain):
-    util_instance.logita(jotain)
 
 # tests
 
