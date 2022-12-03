@@ -13,16 +13,21 @@ class ConsoleCompactVisualizer:
         print(f"@init {self}")
         self.term = blessed.Terminal()
 
+    def clear(self):
+        print(self.term.normal + self.term.home + self.term.on_black + self.term.clear_eos)
+
     def visualize(self, cave, infomessages):
         printable = self.render(cave.taulukko, cave.leveys, cave.korkeus, True)
         
         for message in infomessages:
             printable = printable + f'{message}\n'
 
-        printable = printable + self.term.clear_eos + '\n'
+        printable = printable + '\n'
+        # printable = printable + self.term.clear_eos + '\n'
 
         # clear the screen
-        print(self.term.home + self.term.on_black + self.term.clear) 
+        # print(self.term.home + self.term.on_black + self.term.clear) 
+        print(self.term.home + self.term.on_black) 
         
         # print the maze and infomessages
         print(printable, end='', flush=True)
@@ -48,13 +53,13 @@ class ConsoleCompactVisualizer:
             for x in range(leveys):
                 cell = taulukko[y][x]
                 if cell.wall_down:
-                    printable = printable + self.term.steelblue4('_')
+                    printable = printable + self.term.darkgoldenrod4('_')
                 else:
                     printable = printable + ' '
                 if cell.wall_right:
-                    printable = printable + self.term.orangered('|')
+                    printable = printable + self.term.darkgoldenrod4('|')
                 else:
-                    printable = printable + '.'
+                    printable = printable + self.term.darkgoldenrod4('.')
 
             # possible right border
             if border:  

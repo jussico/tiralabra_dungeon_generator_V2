@@ -13,6 +13,10 @@ class ConsoleVisualizer:
         self.logger = FileLogger()
         print(f"@init {self.name}")
         self.term = blessed.Terminal()
+        
+    
+    def clear(self):
+        print(self.term.normal + self.term.home + self.term.on_black + self.term.clear_eos)
 
     def visualize(self, cave, infomessages):
 
@@ -21,15 +25,18 @@ class ConsoleVisualizer:
         for message in infomessages:
             printable = printable + f'{message}\n'
 
-        printable = printable + self.term.clear_eos + '\n'
+        printable = printable + '\n'
+        #printable = printable + self.term.clear_eos + '\n'
 
-        print(self.term.home + self.term.on_black + self.term.clear) # clear the screen
+        # print(self.term.home + self.term.on_black + self.term.clear) # clear the screen
+        print(self.term.home + self.term.on_black)
 
         print(printable, end='', flush=True)
 
     def render(self, taulukko, leveys, korkeus, border = False):
         self.logger.logita("@render")
-        printable = self.term.home + self.term.normal
+        printable = self.term.home
+        # printable = self.term.home + self.term.normal
 
         # outer wall
         steel = self.term.lightsteelblue3('█')

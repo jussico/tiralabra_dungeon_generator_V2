@@ -4,6 +4,9 @@ class AsciiVisualizer:
   # TODO: maybe
   # https://en.wikipedia.org/wiki/Box_Drawing
 
+  def clear(self):
+      pass
+
   # def visualize(self, maze, location_x, location_y, direction):
   def visualize(self, maze, infomessages):
     

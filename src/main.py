@@ -3,8 +3,11 @@ from generator.dfs import *
 from visualizer.ascii import *
 from visualizer.console import *
 from visualizer.console_compact import *
+import blessed 
 
 def main():
+
+    main_term = blessed.Terminal()
 
     print(f'sys.getrecursionlimit(): {sys.getrecursionlimit()}')
     sys.setrecursionlimit(10000) # TODO: enough?
@@ -35,11 +38,21 @@ def main():
 
     print(f'leveys: {leveys} korkeus: {korkeus} visualizer: {visualizer}')
 
+
+    input("Press Enter to start...")
+
+    main_term.enter_fullscreen()
+
     # TODO
     # from queue import LifoQueue
     # pino = LifoQueue(maxsize=leveys * korkeus)
 
     maze = DfsGenerator(leveys, korkeus, visualizer)
+
+
+    input("Finished. Press Enter to end.")
+
+    main_term.exit_fullscreen()
 
     # TODO: pathfinder algorithm
     # visualizer.visualize(maze)

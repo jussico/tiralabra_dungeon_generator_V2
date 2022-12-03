@@ -23,6 +23,8 @@ class Maze:
     self.alkupiste = Piste(random.randrange(leveys), random.randrange(korkeus))
     self.loppupiste = Piste(random.randrange(leveys), random.randrange(korkeus))
 
+    visualizer.clear()
+
     # algorithm implementation defined in subclass. ( DFS, etc. )
     self.generate(self.alkupiste.x, self.alkupiste.y)
 
@@ -51,4 +53,8 @@ class Maze:
   
   @abstractmethod
   def generate(self, korkeus, leveys):
+    pass
+
+  @abstractmethod
+  def clear(self):
     pass
