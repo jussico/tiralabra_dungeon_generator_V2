@@ -24,7 +24,7 @@ class DfsGenerator(Maze):
     # self.visualizer.visualize(self, x, y, direction)
     self.visualizer.visualize(self, infomessages)
     # TODO: move to visualizer(s)
-    input("Press Enter to continue...")
+    # input("Press Enter to continue...")
 
     self.taulukko[y][x].visited = True
 

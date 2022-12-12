@@ -3,7 +3,7 @@ from generator.dfs import *
 from visualizer.ascii import *
 from visualizer.console import *
 from visualizer.console_compact import *
-import blessed 
+from visualizer.video import *
 
 def main():
 
@@ -25,6 +25,8 @@ def main():
             visualizer = ConsoleCompactVisualizer()
         elif visualizer_name == "console":
             visualizer = ConsoleVisualizer()
+        elif visualizer_name == "video":
+            visualizer = VideoVisualizer()
         else:
             # default to ascii
             sys.stderr.write(f"unknown visualizer: {visualizer_name}\n")
