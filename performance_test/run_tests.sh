@@ -9,14 +9,15 @@ mkdir -p build
 
 declare -A commands
 commands=(
-    ['cave_generator']='src/generator/cave_generator.py'    
+    ['dfs']='src/tests_performance/performance_test_dfs.py'    
+    ['bfs']='src/tests_performance/performance_test_bfs.py'    
+    ['dfs_randomized']='src/tests_performance/performance_test_dfs_randomized.py'    
+    ['bfs_randomized']='src/tests_performance/performance_test_bfs_randomized.py'    
+    ['dijkstra']='src/tests_performance/performance_test_dijkstra.py'    
+    ['astar']='src/tests_performance/performance_test_astar.py'    
+    ['memento_random']='src/tests_performance/performance_test_memento_random.py'    
+    ['wall_follower']='src/tests_performance/performance_test_wall_follower.py'    
 )
-    # ['dfs_generator']='src/main/dfs_generator.py'    
-
-    # ['cave_generator']='python src/main/cave_generator.py'    
-    # ['ls']='/usr/bin/ls'    
-    # ['ls_last']='/usr/bin/ls -last'    
-    # ['stress']='/usr/bin/stress --cpu 1 --io 1 --vm 1 --vm-bytes 1024M --timeout 10'    
 
 # mprof run -M python <script> --script-arg
 
