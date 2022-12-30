@@ -1,16 +1,16 @@
-	Command being timed: "python src/generator/cave_generator.py"
-	User time (seconds): 0.01
-	System time (seconds): 0.06
-	Percent of CPU this job got: 105%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.07
+	Command being timed: "python src/tests_performance/test_bfs.py"
+	User time (seconds): 1.32
+	System time (seconds): 0.01
+	Percent of CPU this job got: 102%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.31
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 9932
+	Maximum resident set size (kbytes): 29196
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2829
+	Minor (reclaiming a frame) page faults: 8278
 	Voluntary context switches: 0
 	Involuntary context switches: 0
 	Swaps: 0
