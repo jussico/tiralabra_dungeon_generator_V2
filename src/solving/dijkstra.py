@@ -10,8 +10,9 @@ class Dijkstra(Base):
     def solve_it(self, maze):
         distances = {}
         previous = {}
-        for i in range(len(maze.taulukko)):
-            for j in range(len(maze.taulukko[0])):
+        # print(f"korkeus: {maze.korkeus} leveys: {maze.leveys}")
+        for i in range(maze.leveys):
+            for j in range(maze.korkeus):
                 distances[(i,j)] = float("inf")
                 previous[(i,j)] = None
         distances[maze.alkupiste.pair()] = 0
@@ -36,15 +37,17 @@ class Dijkstra(Base):
                 return path[::-1]
 
             dirs = self.maze.get_legal_directions(cell[0], cell[1])
+            # print(f"directions: {dirs}")         
 
-            legal_neighbours = self.maze.get_legal_neighbours_for_solution(cell[0], cell[1], dirs)            
+            legal_neighbours = self.maze.get_legal_neighbours_for_solution(cell[0], cell[1], dirs)   
+            # print(f"legal neighbours: {legal_neighbours}")         
 
             for neighbour in legal_neighbours:
                 self.maze.taulukko[neighbour.y][neighbour.x].visited = True
                 naapuri = neighbour.piste().pair()
                 new_distance = distance + 1
-                # if new_distance < distances[naapuri]:
-                if naapuri in distances and new_distance < distances[naapuri]:
+                # if naapuri in distances and new_distance < distances[naapuri]:
+                if new_distance < distances[naapuri]:
                     distances[naapuri] = new_distance
                     previous[naapuri] = cell
                     # print(f"tyypit new_distance: {type(new_distance)} naapuri: {type(naapuri)}")

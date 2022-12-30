@@ -99,10 +99,11 @@ class Maze:
   # get directions to neighboring cells within the borders of the maze
   def get_legal_directions(self, x, y):
     directions = []
+    # print(f"self.leveys: {self.leveys} self.korkeus: {self.korkeus} x+1: {x+1}")
     if x - 1 >= 0:  directions.append(Direction.LEFT)
-    if x + 1 <= self.leveys - 1: directions.append(Direction.RIGHT)
+    if x + 1 < self.leveys: directions.append(Direction.RIGHT)
     if y - 1 >= 0:  directions.append(Direction.UP)
-    if y + 1 <= self.korkeus - 1: directions.append(Direction.DOWN)
+    if y + 1 < self.korkeus : directions.append(Direction.DOWN)
     return directions
 
   def is_within_limits(self, x, y):
