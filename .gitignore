@@ -8,3 +8,4 @@ poetry.lock
 poetry.lock
 video@*/
 
+testing/
