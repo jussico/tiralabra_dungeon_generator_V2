@@ -10,7 +10,7 @@ function setup {
     rm -rf videos/*
 }
 
-function create_single_video {
+function create_single_video_images {
     width=$((1920/10))
     height=$((1080/10))
     echo "width: $width height: $height"
@@ -18,7 +18,9 @@ function create_single_video {
     python src/main.py $width $height video 666 dfs dfs silent 100
     # python src/main.py $width $height video 666 dfs dfs silent 10000
     # python src/main.py $width $height video 666 dfs dfs silent 1000
+}
 
+function create_single_video {
     # create video
     root=$(pwd)
     cd video_images/
@@ -26,13 +28,18 @@ function create_single_video {
         echo $hakemisto
         cd "$hakemisto"/
             bash "$root/scripts/create_video.sh" "video_images/$hakemisto" "$hakemisto"
-            mv *.mp4 ../../videos/
+            mv *.avi ../../videos/
+            # mv *.mp4 ../../videos/
         cd -
     done
     cd $root
 }
 
-setup
+# setup
+# create_single_video_images
+
 create_single_video
 
+
+# play
 # mpv videos/*.mp4

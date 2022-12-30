@@ -51,8 +51,8 @@ class Dfs(Base):
 
             # infomessages = []
             infomessages = self.get_default_infomessages()
-            infomessages.append(f"start: {self.maze.alkupiste}")
-            infomessages.append(f"end: {self.maze.loppupiste}")
+            # infomessages.append(f"start: {self.maze.alkupiste}")
+            # infomessages.append(f"end: {self.maze.loppupiste}")
             infomessages.append(f"current: {current}")
             # infomessages.append(f"dirs: {directions}")
             # infomessages.append(f"legal_neighbours: {legal_neighbours}")

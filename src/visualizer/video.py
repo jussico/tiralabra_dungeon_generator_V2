@@ -16,11 +16,11 @@ class VideoVisualizer(BlackAndWhiteVideoVisualizer):
         if not self.initialized:
             super().video_init(maze)
             # color format values
-            self.steel = '7 7 9   '
-            self.rock = '5 5 2   '
+            self.steel = '7 7 7   '
+            self.rock = '5 5 5   '
             # empty = '  '
             self.empty = '0 0 0   '
-            self.starting_place = '9 9 0   '
+            self.starting_place = '9 0 0   '
             self.ending_place = '0 9 0   '
             self.visited_char = '2 2 2   '            
 
