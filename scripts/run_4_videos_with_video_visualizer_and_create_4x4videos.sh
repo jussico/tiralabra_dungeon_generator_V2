@@ -38,6 +38,7 @@ function create_single_videos {
             mv *.mp4 ../../videos/
         cd -
     done
+    cd $root
 }
 
 function create_4x4_video {
@@ -63,8 +64,8 @@ function create_4x4_video {
         -c:v libx264 4x4_video.mkv    
 }
 
-setup
-create_single_videos
+# setup
+# create_single_videos
 create_4x4_video
 
 

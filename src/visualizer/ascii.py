@@ -1,5 +1,7 @@
 
-class AsciiVisualizer:
+from visualizer.base import Base
+
+class AsciiVisualizer(Base):
 
   # TODO: maybe
   # https://en.wikipedia.org/wiki/Box_Drawing
@@ -8,7 +10,7 @@ class AsciiVisualizer:
       pass
 
   # def visualize(self, maze, location_x, location_y, direction):
-  def visualize(self, maze, infomessages):
+  def visualize_it(self, maze, infomessages):
     
     # ylhäälle ja alas täytyy piirtää visuaalisuuden vuoksi ylimääräiset rivit 
     # koska tietorakenteessa seinät ovat vain alhaalla ja oikealla.
@@ -43,6 +45,3 @@ class AsciiVisualizer:
       printable = printable + f'{message}\n'
 
     print(printable)
-
-  def __str__(self):
-    return self.__class__.__name__

@@ -1,7 +1,9 @@
 
-class Neighbourg:
+from common.piste import *
 
-    def __init__(self, x, y, direction):
-        self.x = x
-        self.y = y
-        self.direction = direction
+@dataclass(frozen=True)
+class Neighbourg(Point):
+    direction: int
+
+    def piste(self):
+        return Point(self.x,self.y)

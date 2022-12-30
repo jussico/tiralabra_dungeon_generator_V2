@@ -6,21 +6,26 @@ from common.util import *
 # https://blessed.readthedocs.io/_/downloads/en/latest/pdf/
 # steelblue4 yms. 
 
-class ConsoleVisualizer:
+from visualizer.base import Base
+
+class ConsoleVisualizer(Base):
 
     def __init__(self):
+        super().__init__()
         self.name = type(self).__name__
         self.logger = FileLogger()
         print(f"@init {self.name}")
         self.term = blessed.Terminal()
-        
     
     def clear(self):
         print(self.term.normal + self.term.home + self.term.on_black + self.term.clear_eos)
 
-    def visualize(self, cave, infomessages):
+    def visualize_it(self, cave, infomessages):
 
-        printable = self.render(cave.taulukko, cave.leveys, cave.korkeus, True)
+        printable = self.render(cave, True)
+
+        # clear screen after the maze so texts don't get messy.
+        printable = printable + self.term.clear_eos
 
         for message in infomessages:
             printable = printable + f'{message}\n'
@@ -33,8 +38,13 @@ class ConsoleVisualizer:
 
         print(printable, end='', flush=True)
 
-    def render(self, taulukko, leveys, korkeus, border = False):
+    def render(self, cave, border = False):
         self.logger.logita("@render")
+
+        taulukko = cave.taulukko
+        leveys = cave.leveys
+        korkeus = cave.korkeus
+
         printable = self.term.home
         # printable = self.term.home + self.term.normal
 
@@ -47,6 +57,10 @@ class ConsoleVisualizer:
         # ▓
         # ▒
         # ░
+        empty = ' '
+        starting_place = self.term.green('S')
+        ending_place = self.term.orange('E')
+        visited_char = self.term.blue('░')
 
         # possible top border
         if border:
@@ -62,18 +76,32 @@ class ConsoleVisualizer:
 
             for x in range(leveys):
                 cell = taulukko[y][x]
+                
+                thing = empty
+                other = empty
+
+                if cell.visited:
+                    thing = visited_char
+                    other = visited_char
+                
+
+
+                if(cave.alkupiste.pair() == (x,y)):
+                    thing = starting_place
+                if(cave.loppupiste.pair() == (x,y)):
+                    thing = ending_place
 
                 new_upper_block = ''
                 new_bottom_block = ''
 
                 if cell.wall_right:
-                    new_upper_block = ' ' + rock
+                    new_upper_block = thing + rock
                 else:
-                    new_upper_block = '  '
+                    new_upper_block = thing + other
                 if cell.wall_down:
                     new_bottom_block = rock + rock
                 else:
-                    new_bottom_block = ' ' + rock
+                    new_bottom_block = other + rock
 
                 printable = printable + new_upper_block
                 row2 = row2 + new_bottom_block
@@ -101,6 +129,3 @@ class ConsoleVisualizer:
         # https://github.com/jquast/blessed/blob/master/docs/colors.rst
 
         return printable
-
-    def __str__(self):
-        return self.__class__.__name__

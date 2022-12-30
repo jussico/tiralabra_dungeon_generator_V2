@@ -6,9 +6,12 @@ from common.util import *
 # https://blessed.readthedocs.io/_/downloads/en/latest/pdf/
 # steelblue4 yms. 
 
-class ConsoleCompactVisualizer:
+from visualizer.base import Base
+
+class ConsoleCompactVisualizer(Base):
 
     def __init__(self):
+        super().__init__()
         self.logger = FileLogger()
         print(f"@init {self}")
         self.term = blessed.Terminal()
@@ -16,7 +19,7 @@ class ConsoleCompactVisualizer:
     def clear(self):
         print(self.term.normal + self.term.home + self.term.on_black + self.term.clear_eos)
 
-    def visualize(self, cave, infomessages):
+    def visualize_it(self, cave, infomessages):
         printable = self.render(cave.taulukko, cave.leveys, cave.korkeus, True)
         
         for message in infomessages:
@@ -83,6 +86,3 @@ class ConsoleCompactVisualizer:
 
 
         return printable
-
-    def __str__(self):
-        return self.__class__.__name__

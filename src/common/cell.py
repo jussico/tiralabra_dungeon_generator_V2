@@ -9,7 +9,11 @@ class Cell:
         self.the_way = False
 
     def __str__(self):
-        stringi = f'wall_bottom: {self.wall_down} \n'
-        stringi = stringi + f'wall_right: {self.wall_right} \n'
-        stringi = stringi + f'visited: {self.visited} \n'
-        return stringi
+        merkki = ' '
+        if self.wall_down:
+            merkki = '_'
+        if self.wall_right:
+            merkki = '|'
+        if self.wall_down and self.wall_right:
+            merkki = 'J'
+        return merkki

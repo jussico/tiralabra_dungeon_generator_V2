@@ -9,3 +9,6 @@ poetry.lock
 video@*/
 
 testing/
+video_images/
+varmuus_videot/
+videos/
