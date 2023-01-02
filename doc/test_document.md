@@ -49,7 +49,8 @@ poetry run coverage xml
 ##### coverage xml raportti
 [coverage XML report](resource/coverage.xml)
 
-![](doc/resource/coverage_table.png?raw=true)
+##### coverage html raportti kuva
+![](resource/coverage_table.png?raw=true)
 
 #### Testien kuvaus algoritmeittain
 
