@@ -111,7 +111,7 @@ class BlackAndWhiteVideoVisualizer(Base):
                     new_upper_block = thing + self.rock
                 else:
                     new_upper_block = thing + other
-                if cell.wall_down:
+                if cell.wall_bottom:
                     new_bottom_block = self.rock + self.rock
                 else:
                     new_bottom_block = other + self.rock
