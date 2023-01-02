@@ -1,7 +1,7 @@
 
 import random
 from common.cell import *
-from common.piste import *
+from common.point import *
 import heapq
 from solving.base import Base
 
@@ -9,9 +9,9 @@ class Astar(Base):
 
     def solve_it(self, maze):
         queue = []
-        heapq.heappush(queue, (0, maze.alkupiste.pair()))
-        cost = { maze.alkupiste.pair(): 0 }
-        parent = {maze.alkupiste.pair(): None}
+        heapq.heappush(queue, (0, maze.starting_point.pair()))
+        cost = { maze.starting_point.pair(): 0 }
+        parent = {maze.starting_point.pair(): None}
         visited = set()
 
         while queue:
@@ -20,7 +20,7 @@ class Astar(Base):
 
             current_cost, current_node = heapq.heappop(queue)
 
-            if current_node == maze.loppupiste.pair():
+            if current_node == maze.ending_point.pair():
                 path = []
                 while current_node is not None:
                     path.append(current_node)
@@ -28,7 +28,7 @@ class Astar(Base):
                 maze.solved = True
                 self.maze.visualizer.visualize(self.maze, self.get_default_infomessages())                
 
-                return path[::-1]
+                return True, path[::-1]
             
             visited.add(current_node)
             # for visualisation
@@ -45,7 +45,7 @@ class Astar(Base):
                 neighbour_cost = cost[current_node] + 1
                 if naapuri not in cost or neighbour_cost < cost[naapuri]:
                     cost[naapuri] = neighbour_cost
-                    priority = neighbour_cost + self.euclidean_distance(maze.loppupiste.pair(), naapuri)
+                    priority = neighbour_cost + self.euclidean_distance(maze.ending_point.pair(), naapuri)
                     heapq.heappush(queue, (priority, naapuri))
                     parent[naapuri] = current_node
                     infomessages = self.get_default_infomessages()
@@ -54,7 +54,7 @@ class Astar(Base):
                     # infomessages.append(f"queue: {queue}") # prints too much..
                     maze.visualizer.visualize(maze, infomessages)
                     # input("pressi enter.")                                        
-        return None
+        return False, None
 
     def euclidean_distance(self, a,b):
         row1, col1 = a

@@ -1,7 +1,7 @@
 import blessed 
 from blessed.colorspace import RGB_256TABLE
 import random
-from common.util import *
+from visualizer.util import *
 
 # https://blessed.readthedocs.io/_/downloads/en/latest/pdf/
 # steelblue4 yms. 
@@ -21,6 +21,7 @@ class ConsoleVisualizer(Base):
         print(self.term.normal + self.term.home + self.term.on_black + self.term.clear_eos)
 
     def visualize_it(self, cave, infomessages):
+        print(f"@ConsoleVisualizer.visualize.it()")
 
         printable = self.render(cave, True)
 
@@ -31,9 +32,7 @@ class ConsoleVisualizer(Base):
             printable = printable + f'{message}\n'
 
         printable = printable + '\n'
-        #printable = printable + self.term.clear_eos + '\n'
 
-        # print(self.term.home + self.term.on_black + self.term.clear) # clear the screen
         print(self.term.home + self.term.on_black)
 
         print(printable, end='', flush=True)
@@ -46,12 +45,10 @@ class ConsoleVisualizer(Base):
         korkeus = cave.korkeus
 
         printable = self.term.home
-        # printable = self.term.home + self.term.normal
 
         # outer wall
         steel = self.term.lightsteelblue3('█')
         # inner wall
-        # rock = self.term.darkgoldenrod4('█')
         rock = self.term.darkgoldenrod4('▓')
         # https://en.wikipedia.org/wiki/Block_Elements
         # ▓
@@ -83,12 +80,10 @@ class ConsoleVisualizer(Base):
                 if cell.visited:
                     thing = visited_char
                     other = visited_char
-                
 
-
-                if(cave.alkupiste.pair() == (x,y)):
+                if(cave.starting_point.pair() == (x,y)):
                     thing = starting_place
-                if(cave.loppupiste.pair() == (x,y)):
+                if(cave.ending_point.pair() == (x,y)):
                     thing = ending_place
 
                 new_upper_block = ''

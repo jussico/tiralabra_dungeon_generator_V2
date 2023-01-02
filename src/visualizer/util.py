@@ -10,5 +10,3 @@ class FileLogger:
             print(jotain, file=logia)
         logia.close()
 
-# tests
-

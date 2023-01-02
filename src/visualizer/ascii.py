@@ -9,20 +9,18 @@ class AsciiVisualizer(Base):
   def clear(self):
       pass
 
-  # def visualize(self, maze, location_x, location_y, direction):
   def visualize_it(self, maze, infomessages):
-    
-    # ylhäälle ja alas täytyy piirtää visuaalisuuden vuoksi ylimääräiset rivit 
-    # koska tietorakenteessa seinät ovat vain alhaalla ja oikealla.
+
+    # TODO: nicer characters(?)    
     top_border  = "_"
     left_border = '|'
     reuna = '█'
     
-    # piirrä yläreuna
+    # top border
     printable = (maze.leveys * 2 + 1) * top_border + '\n'
 
     for y in range(maze.korkeus):
-      # piirrä vasen reuna
+      # left border
       printable = printable + left_border
       for x in range(maze.leveys):
         if maze.taulukko[y][x].wall_down:
@@ -33,14 +31,15 @@ class AsciiVisualizer(Base):
           printable = printable + '|'
         else:
           printable = printable + '.'
-      # mahdollinen oikea reuna olisi tässä
+      # right border
       printable = printable + '\n'
-    # mahdollinen alareuna olisi tässä
+    # bottom border
 
-    # infotexts below
+    # infotexts below maze
     printable = printable + '\n'    
     printable = printable + f'visualizer : {self}\n'
-    printable = printable + f'alkupiste : {maze.alkupiste}\n'
+    printable = printable + f'starting_point : {maze.starting_point}\n'
+    printable = printable + f'ending_point : {maze.ending_point}\n'
     for message in infomessages:
       printable = printable + f'{message}\n'
 

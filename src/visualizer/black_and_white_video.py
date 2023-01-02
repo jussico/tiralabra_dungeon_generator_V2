@@ -1,11 +1,12 @@
 import random
-from common.util import *
+from visualizer.util import *
 import time
 from datetime import datetime
 import os
 
 from visualizer.base import Base
 
+# note: not really used anymore because colorvideo has arrived! (Color)VideoVisualizer expands this class.
 class BlackAndWhiteVideoVisualizer(Base):
 
     def __init__(self):
@@ -61,22 +62,8 @@ class BlackAndWhiteVideoVisualizer(Base):
 
         printable = self.create_file_header(cave, border)
 
-        # printable = printable + self.render(cave.taulukko, cave.leveys, cave.korkeus, border)
         printable = printable + self.render(cave, border)
 
-        # TODO: maybe add infotexts to image?
-        # for message in infomessages:
-        #     printable = printable + f'{message}\n'
-
-        # printable = printable + '\n'
-        # #printable = printable + self.term.clear_eos + '\n'
-
-        # # print(self.term.home + self.term.on_black + self.term.clear) # clear the screen
-        # print(self.term.home + self.term.on_black)
-
-        # print(printable, end='', flush=True)
-
-        # print(printable)
         new_file_name = f"frame_{self.frame:07d}.pbm"
         new_file = open(new_file_name, "w")
         new_file.write(printable)
@@ -85,20 +72,11 @@ class BlackAndWhiteVideoVisualizer(Base):
         print(f"frame {self.frame} written to file {new_file_name}.")
         self.frame = self.frame + 1
 
-    # def render(self, taulukko, leveys, korkeus, border = False):
     def render(self, cave, border = False):
 
         taulukko = cave.taulukko
         leveys = cave.leveys
         korkeus = cave.korkeus
-
-        # steel = '7 '
-        # rock = '5 '
-        # # empty = '  '
-        # empty = '0 '
-        # starting_place = '4 '
-        # ending_place = '9 '
-        # visited_char = '2 '
 
         # possible top border
         if border:
@@ -121,9 +99,9 @@ class BlackAndWhiteVideoVisualizer(Base):
                     thing = self.visited_char
                     other = self.visited_char
 
-                if(cave.alkupiste.pair() == (x,y)):
+                if(cave.starting_point.pair() == (x,y)):
                     thing = self.starting_place
-                if(cave.loppupiste.pair() == (x,y)):
+                if(cave.ending_point.pair() == (x,y)):
                     thing = self.ending_place                
 
                 new_upper_block = ''

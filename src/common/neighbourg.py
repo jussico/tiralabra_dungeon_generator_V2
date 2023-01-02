@@ -1,5 +1,5 @@
 
-from common.piste import *
+from common.point import *
 
 @dataclass(frozen=True)
 class Neighbourg(Point):

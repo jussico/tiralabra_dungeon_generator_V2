@@ -1,7 +1,7 @@
 import blessed 
 from blessed.colorspace import RGB_256TABLE
 import random
-from common.util import *
+from visualizer.util import *
 
 # https://blessed.readthedocs.io/_/downloads/en/latest/pdf/
 # steelblue4 yms. 
@@ -26,10 +26,7 @@ class ConsoleCompactVisualizer(Base):
             printable = printable + f'{message}\n'
 
         printable = printable + '\n'
-        # printable = printable + self.term.clear_eos + '\n'
 
-        # clear the screen
-        # print(self.term.home + self.term.on_black + self.term.clear) 
         print(self.term.home + self.term.on_black) 
         
         # print the maze and infomessages

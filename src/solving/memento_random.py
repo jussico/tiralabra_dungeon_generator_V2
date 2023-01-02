@@ -1,7 +1,7 @@
 import sys
 import random
 from common.cell import *
-from common.piste import *
+from common.point import *
 from solving.base import Base
 
 class MementoRandom(Base):
@@ -10,19 +10,21 @@ class MementoRandom(Base):
         pass
 
     def solve_it(self, maze):
-        maze.taulukko[self.maze.alkupiste.y][self.maze.alkupiste.x].visited = True
+        maze.taulukko[self.maze.starting_point.y][self.maze.starting_point.x].visited = True
 
         maze.solved = False
 
-        limit = sys.maxsize
+        # limit = 1000
+        # limit = sys.maxsize
+        limit = maze.leveys * maze.korkeus * 1000 # wont take forever
         maze.frame = 0
 
-        current = maze.alkupiste
+        current = maze.starting_point
 
         while not maze.solved and maze.frame < limit:
             maze.frame = maze.frame + 1
 
-            if current == self.maze.loppupiste:
+            if current == self.maze.ending_point:
                 maze.solved = True
                 continue
 
@@ -36,20 +38,17 @@ class MementoRandom(Base):
 
                 naapuri = neighbour.piste().pair()
 
-                if naapuri == self.maze.loppupiste.pair():
+                if naapuri == self.maze.ending_point.pair():
                     maze.solved = True
                     continue
 
-                # for visualization only
                 maze.taulukko[neighbour.y][neighbour.x].visited = True
 
-                # if solved or frame % 1000 == 0:
                 infomessages = self.get_default_infomessages()
                 infomessages.append(f"current: {current}")
                 infomessages.append(f"neighbour: {neighbour}")
                 self.maze.visualizer.visualize(self.maze, infomessages)
-                # if maze.interactive: input(f"pressi enter. counter: {maze.frame}")
 
                 current = neighbour
 
-        return maze.solved
+        return maze.solved, None

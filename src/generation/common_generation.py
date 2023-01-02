@@ -1,5 +1,6 @@
 from enum import Enum
 
+# TODO: use later
 class Generation(Enum):
   dummy = 0
   dfs = 1

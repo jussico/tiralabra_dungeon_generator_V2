@@ -1,4 +1,8 @@
+import os
 import sys as realsys
+
+realsys.path.insert(1, os.path.join(realsys.path[0], '..'))
+
 import random
 from generation.common_generation import *
 from generation.dfs import *
@@ -12,11 +16,10 @@ from visualizer.dummy import *
 import resource
 import pickle
 
-
 # creates some mazes and persists them so they can be used easily to test maze-solving algorithms.
 def main():
 
-    if realsys.argv[1] == 'test':
+    if len(realsys.argv) > 1 and realsys.argv[1] == 'test':
         print("testing loading #1.")
         filename = 'maze_persisted_01.data'
         with open(f'resources/{filename}', 'rb') as maze_file:
@@ -76,6 +79,7 @@ def main():
         'skip', 7680/2, 4320/2, 'dummy', 51, 'dfs'
         ]), 'maze_persisted_10.data')                                                        
 
+# TODO: not all argument parsing was added here.
 def generate_and_persist(sys, filename):
 
     main_term = blessed.Terminal()
@@ -109,7 +113,7 @@ def generate_and_persist(sys, filename):
 
     # main_term.enter_fullscreen()
 
-    generation = DfsGenerator(leveys, korkeus, visualizer)
+    generation = DfsGenerator(leveys, korkeus, visualizer, "silent", 0, "dfs")
 
     cave = generation.generate_maze()
     

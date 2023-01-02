@@ -1,7 +1,7 @@
 
 import random
 from common.cell import *
-from common.piste import *
+from common.point import *
 from solving.base import Base
 import heapq
 
@@ -17,16 +17,16 @@ class AstarJumpPoint(Base):
         maze.reset_visited()
 
         queue = []
-        heapq.heappush(queue, (0, maze.alkupiste.pair()))
-        cost = { maze.alkupiste.pair(): 0 }
-        parent = {maze.alkupiste.pair(): None}
+        heapq.heappush(queue, (0, maze.starting_point.pair()))
+        cost = { maze.starting_point.pair(): 0 }
+        parent = {maze.starting_point.pair(): None}
         visited = set()
         previous_node = None
 
         while queue:            
             current_cost, current_node = heapq.heappop(queue)
 
-            if current_node == maze.loppupiste.pair():
+            if current_node == maze.ending_point.pair():
                 path = []
                 while current_node is not None:
                     path.append(current_node)
@@ -53,14 +53,14 @@ class AstarJumpPoint(Base):
                     # for visualisation
                     maze.taulukko[current_node[1]][current_node[0]].visited = True                    
                     infomessages = []
-                    infomessages.append(f"start: {maze.alkupiste}")
-                    infomessages.append(f"end: {maze.loppupiste}")
+                    infomessages.append(f"start: {maze.starting_point}")
+                    infomessages.append(f"end: {maze.ending_point}")
                     infomessages.append(f"current: {current_node}")
                     infomessages.append(f"neighbour: {neighbour}")
                     maze.visualizer.visualize(maze, infomessages)
                     input("continue middle of jump.")      
 
-                    if current_node == maze.loppupiste.pair():
+                    if current_node == maze.ending_point.pair():
                         return True
 
             input("continue from after jump.")
@@ -77,12 +77,12 @@ class AstarJumpPoint(Base):
                 neighbour_cost = cost[current_node] + 1
                 if naapuri not in cost or neighbour_cost < cost[naapuri]:
                     cost[naapuri] = neighbour_cost
-                    priority = neighbour_cost + self.euclidean_distance(maze.loppupiste.pair(), naapuri)
+                    priority = neighbour_cost + self.euclidean_distance(maze.ending_point.pair(), naapuri)
                     heapq.heappush(queue, (priority, naapuri))
                     parent[naapuri] = current_node
                     infomessages = []
-                    infomessages.append(f"start: {maze.alkupiste}")
-                    infomessages.append(f"end: {maze.loppupiste}")
+                    infomessages.append(f"start: {maze.starting_point}")
+                    infomessages.append(f"end: {maze.ending_point}")
                     infomessages.append(f"current: {current_node}")
                     infomessages.append(f"neighbour: {neighbour}")
                     # infomessages.append(f"queue: {queue}") # prints too much..

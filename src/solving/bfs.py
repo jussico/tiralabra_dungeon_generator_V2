@@ -1,7 +1,7 @@
 
 import random
 from common.cell import *
-from common.piste import *
+from common.point import *
 
 from solving.base import Base
 
@@ -13,14 +13,14 @@ class Bfs(Base):
     def solve_it(self, maze):
         queue = []
 
-        queue.append(maze.alkupiste)
+        queue.append(maze.starting_point.pair())
 
-        self.maze.taulukko[self.maze.alkupiste.y][self.maze.alkupiste.x].visited = True
+        self.maze.taulukko[self.maze.starting_point.y][self.maze.starting_point.x].visited = True
 
         maze.solved = False
 
         prev_pos = {}
-        prev_pos[maze.alkupiste] = None
+        prev_pos[maze.starting_point.pair()] = None
 
         while queue and not maze.solved:
 
@@ -28,46 +28,44 @@ class Bfs(Base):
 
             current = queue.pop(0)
 
-            if current.pair() == self.maze.loppupiste.pair():
+            if current == self.maze.ending_point.pair():
                 maze.solved = True
-                # infomessages.append(f"neighbour: {neighbour}")
-                # infomessages.append(f"queue: {queue}")
                 self.maze.visualizer.visualize(self.maze, self.get_default_infomessages())                
                 continue
 
-            directions = self.get_directions(current)
+            directions = self.get_directions(current[0], current[1])
 
             random.shuffle(directions)
 
-            legal_neighbours = self.maze.get_legal_neighbours_for_solution(current.x, current.y, directions)
+            legal_neighbours = self.maze.get_legal_neighbours_for_solution(current[0], current[1], directions)
 
             for neighbour in legal_neighbours:
                 if not self.maze.taulukko[neighbour.y][neighbour.x].visited:
+                    naapuri = neighbour.pair()
 
-                    queue.append(neighbour)
+                    queue.append(naapuri)
                     self.maze.taulukko[neighbour.y][neighbour.x].visited = True
-                    prev_pos[neighbour] = current
+                    prev_pos[naapuri] = current
 
                     infomessages = self.get_default_infomessages()
                     infomessages.append(f"current: {current}")
-                    # infomessages.append(f"neighbour: {neighbour}")
-                    # infomessages.append(f"queue: {queue}")
                     self.maze.visualizer.visualize(self.maze, infomessages)
-                    # if maze.interactive: input("press enter to continue.")
 
-        # if solved:
-        #     solution = []
-        #     curr_pos = maze.loppupiste
-        #     while curr_pos != maze.alkupiste:
-        #         solution.append(curr_pos)
-        #         curr_pos = prev_pos[curr_pos]
-        #     solution.append(maze.alkupiste)
-        #     return solution[::-1]            
+        if maze.solved:
+            solution = []
+            curr_pos = maze.ending_point.pair()
+            while curr_pos != maze.starting_point.pair():
+                solution.append(curr_pos)
+                curr_pos = prev_pos[curr_pos]
+            solution.append(maze.starting_point.pair())
+            solution = solution[::-1]            
+        else:
+            solution = None
 
-        return maze.solved
+        return maze.solved, solution
 
-    def get_directions(self, current):
-        directions = self.maze.get_legal_directions(current.x, current.y)
+    def get_directions(self, x, y):
+        directions = self.maze.get_legal_directions(x, y)
         return directions
 
     def __str__(self):

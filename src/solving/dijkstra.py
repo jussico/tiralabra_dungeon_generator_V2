@@ -1,7 +1,7 @@
 
 import random
 from common.cell import *
-from common.piste import *
+from common.point import *
 from heapq import heappush, heappop
 from solving.base import Base
 
@@ -10,15 +10,14 @@ class Dijkstra(Base):
     def solve_it(self, maze):
         distances = {}
         previous = {}
-        # print(f"korkeus: {maze.korkeus} leveys: {maze.leveys}")
         for i in range(maze.leveys):
             for j in range(maze.korkeus):
                 distances[(i,j)] = float("inf")
                 previous[(i,j)] = None
-        distances[maze.alkupiste.pair()] = 0
+        distances[maze.starting_point.pair()] = 0
 
         heap = []
-        heappush(heap, (0, maze.alkupiste.pair()))
+        heappush(heap, (0, maze.starting_point.pair()))
 
         while heap:
 
@@ -26,7 +25,7 @@ class Dijkstra(Base):
 
             distance, cell = heappop(heap)
 
-            if cell == maze.loppupiste.pair():
+            if cell == maze.ending_point.pair():
                 path = []
                 while cell:
                     path.append(cell)
@@ -34,33 +33,26 @@ class Dijkstra(Base):
                 maze.solved = True
                 self.maze.visualizer.visualize(self.maze, self.get_default_infomessages())
 
-                return path[::-1]
+                return True, path[::-1]
 
             dirs = self.maze.get_legal_directions(cell[0], cell[1])
-            # print(f"directions: {dirs}")         
 
             legal_neighbours = self.maze.get_legal_neighbours_for_solution(cell[0], cell[1], dirs)   
-            # print(f"legal neighbours: {legal_neighbours}")         
 
             for neighbour in legal_neighbours:
                 self.maze.taulukko[neighbour.y][neighbour.x].visited = True
                 naapuri = neighbour.piste().pair()
                 new_distance = distance + 1
-                # if naapuri in distances and new_distance < distances[naapuri]:
                 if new_distance < distances[naapuri]:
                     distances[naapuri] = new_distance
                     previous[naapuri] = cell
-                    # print(f"tyypit new_distance: {type(new_distance)} naapuri: {type(naapuri)}")
                     heappush(heap, (new_distance, naapuri))
 
                     infomessages = self.get_default_infomessages()
                     infomessages.append(f"current: {cell}")
-                    # infomessages.append(f"neighbour: {neighbour}")
-                    # infomessages.append(f"heap: {heap}")
                     self.maze.visualizer.visualize(self.maze, infomessages)
-                    # if maze.interactive: input("press enter.")                    
         
-        return None
+        return False, None
 
     def __str__(self):
         return self.__class__.__name__

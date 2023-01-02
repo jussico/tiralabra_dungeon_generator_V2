@@ -1,19 +1,94 @@
-import unittest
-
 import os
 import sys
-
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 
+import unittest
+from solving.bfs_randomized import *
+from generation.dfs import *
+from visualizer.dummy import *
 from main import Main
+from generation.hardcoded import *
 
-class TestDfs(unittest.TestCase):
+class TestBfsRandomized(unittest.TestCase):
     def setUp(self):
-        print("@setUp")
-        self.main_class = Main()
+        pass
 
     def test_bfs_randomized(self):
-        print("@test_bfs_randomized")
-        self.main_class.main(['main.py', \
-            32, 16, 'dummy', 42, 'dfs', 'bfs_randomized', 'silent', 1000])        
-        self.assertEqual(True, True)
+        # create maze
+        solving = BfsRandomized()
+        generation = DfsGenerator(32, 16, DummyVisualizer(), False, 0, solving.__class__.__name__, 42)
+        maze = generation.generate_maze()
+
+        # solve maze
+        solved, route = solving.solve(maze)
+
+        # check result
+        self.assertEqual(solved, True)
+        self.assertIsNotNone(route) # not empty
+
+    def test_bfs_with_empty_maze(self):
+        # create maze
+        solving = BfsRandomized()
+        generation = HardCodedGenerator(HardCodedMaze.empty_A.name, DummyVisualizer(), False, 10, solving.__class__.__name__, 42)
+        maze = generation.generate_maze()
+
+        # solve maze
+        solved, route = solving.solve(maze)
+
+        # check result
+        self.assertEqual(solved, True)
+        self.assertEqual(len(route), maze.leveys + maze.korkeus - 1)
+
+    def test_bfs_randomized_with_empty_maze_B(self):
+        # create maze
+        solving = Bfs()
+        generation = HardCodedGenerator(HardCodedMaze.empty_B.name, DummyVisualizer(), False, 10, solving.__class__.__name__, 42)
+        maze = generation.generate_maze()
+
+        # solve maze
+        solved, route = solving.solve(maze)
+
+        # check result
+        self.assertEqual(solved, True)
+        self.assertEqual(len(route), maze.leveys)
+
+    def test_bfs_randomized_with_empty_maze_C(self):
+        # create maze
+        solving = Bfs()
+        generation = HardCodedGenerator(HardCodedMaze.empty_C.name, DummyVisualizer(), False, 10, solving.__class__.__name__, 42)
+        maze = generation.generate_maze()
+
+        # solve maze
+        solved, route = solving.solve(maze)
+
+        # check result
+        self.assertEqual(solved, True)
+        self.assertEqual(len(route), maze.korkeus)
+
+    def test_bfs_randomized_with_empty_maze_D(self):
+        # create maze
+        solving = Bfs()
+        generation = HardCodedGenerator(HardCodedMaze.empty_D.name, DummyVisualizer(), False, 10, solving.__class__.__name__, 42)
+        maze = generation.generate_maze()
+
+        # solve maze
+        solved, route = solving.solve(maze)
+
+        # check result
+        self.assertEqual(solved, True)
+        self.assertEqual(len(route), maze.leveys / 2 + maze.korkeus / 2 + 1)
+
+    def test_bfs_randomized_with_fail_A(self):
+        # create maze
+        solving = Bfs()
+        generation = HardCodedGenerator(HardCodedMaze.fail_A.name, DummyVisualizer(), False, 10, solving.__class__.__name__, 42)
+        maze = generation.generate_maze()
+
+        # solve maze
+        solved, route = solving.solve(maze)
+
+        # check result
+        self.assertEqual(solved, False)
+        self.assertIsNone(route)
+
+

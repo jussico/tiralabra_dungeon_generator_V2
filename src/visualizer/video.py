@@ -1,5 +1,5 @@
 import random
-from common.util import *
+from visualizer.util import *
 import time
 from datetime import datetime
 import os
