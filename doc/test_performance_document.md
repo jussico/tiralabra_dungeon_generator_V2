@@ -1,7 +1,5 @@
 # Suorituskyky testausdokumentti
 
-Note: Tämän dokumentin sisältö tulee vielä lisääntymään huomattavasti kun varsinaisen koodin ja sitä myötä testien määrä lisääntyy. Myös ulkoasussa on vielä tekemistä.
-
 ## Suorituskyvin testauksessa on käytetty kahta yleiskäyttöistä työkalua:
 * /usr/bin/time
 * python memory profiler
@@ -28,16 +26,36 @@ Tulokset kopioidaan doc/resources/ -hakemistoon.
 
 ## Suorituskykytestien tulokset
 
-### cave_generator.py
-
 ### /usr/bin/time
 
 tulokset:
-doc/resource/time_cave_generator_*.txt tiedostot
+doc/resource/ tiedostot
 
 #### Python Memory Profiler
 
-![alt text](resource/mp_report_cave_generator_default.png)
-![alt text](resource/mp_report_cave_generator_flame.png)
-![alt text](resource/mp_report_cave_generator_slope.png)
+tulokset alla:
 
+![alt text](resource/mp_report_astar_default.png)
+![alt text](resource/mp_report_astar_flame.png)
+![alt text](resource/mp_report_astar_slope.png)
+![alt text](resource/mp_report_bfs_default.png)
+![alt text](resource/mp_report_bfs_flame.png)
+![alt text](resource/mp_report_bfs_randomized_default.png)
+![alt text](resource/mp_report_bfs_randomized_flame.png)
+![alt text](resource/mp_report_bfs_randomized_slope.png)
+![alt text](resource/mp_report_bfs_slope.png)
+![alt text](resource/mp_report_dfs_default.png)
+![alt text](resource/mp_report_dfs_flame.png)
+![alt text](resource/mp_report_dfs_randomized_default.png)
+![alt text](resource/mp_report_dfs_randomized_flame.png)
+![alt text](resource/mp_report_dfs_randomized_slope.png)
+![alt text](resource/mp_report_dfs_slope.png)
+![alt text](resource/mp_report_dijkstra_default.png)
+![alt text](resource/mp_report_dijkstra_flame.png)
+![alt text](resource/mp_report_dijkstra_slope.png)
+![alt text](resource/mp_report_memento_random_default.png)
+![alt text](resource/mp_report_memento_random_flame.png)
+![alt text](resource/mp_report_memento_random_slope.png)
+![alt text](resource/mp_report_wall_follower_default.png)
+![alt text](resource/mp_report_wall_follower_flame.png)
+![alt text](resource/mp_report_wall_follower_slope.png)

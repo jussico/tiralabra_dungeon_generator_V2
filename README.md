@@ -33,4 +33,4 @@ Aineopintojen harjoitustyö - tietorakenteet ja algoritmit - dungeon generator
 
 * [Viikko 6](doc/viikkojen_raportit/viikkoraportti_6.md) 
 
-TODO: coverage percentage
+![](doc/resource/coverage.png?raw=true)

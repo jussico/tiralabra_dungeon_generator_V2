@@ -13,41 +13,28 @@ Riippuvuuksien asennus komennolla:
 poetry install
 ```
 
-## Status
-
-Projektissa on tällä hetkellä kolme hieman erilaista
-algoritmien toiminnan visualisoijaa. ( src/visualizer/ )
-
-Yksikkötestit ja suorituskykytestit eivät vielä tee mitään 
-vaikka rungot niiden käytölle on luotu.
-
-Sokkelonluontialgoritmeista on toteutettu vasta ensimmäinen - 
-Randomized DFS.
-
-Polunetsintäalgoritmeja ei ole vielä toteutettu.
-
 ## Suorittaminen
 
-scripts/ -hakemistossa on muutama valmis Bash-scripti joilla voi ajaa ohjelman toimivia osia (DFS-generointialgoritmi kolmella eri visualisointitavalla).
+scripts/ -hakemistossa on muutama valmis Bash-scripti joilla voi ajaa ohjelmaa eri argumenteilla.
 
 ```bash
-scripts/suorita_ascii_visualizer.sh
-scripts/suorita_mini_console_visualizer.sh
-scripts/suorita_console_visualizer.sh
+scripts/test_running_all_solving_console_visualizer.sh
+scripts/test_running_all_solving_video_visualizer.sh
+scripts/run_9nish_videos_and_create_high_resolution_videos.sh
 ```
 
 Pääohjelma käynnistetään seuraavasti:
 
 ```python
-python src/main.py <leveys> <korkeus> <visualizer>
+python src/main.py <leveys> <korkeus> <visualizer> <random-generator-key> <generator-algorithm> <solving-algorithm> <silent/interactive> <framedrop>
 ```
 
-esim.
-
-```python
-python src/main.py 20 20 ascii
-
-python src/main.py 20 20 consolemini
-
-python src/main.py 20 20 console
+esim. seuraava luo sokkelon kokoa 20x20, console-visualisoijalla, satunnais-generaattoriavaimella 42, generaattorilla dfs, ratkaisijalla dfs, hiljaisesti, näyttäen ratkaisussa joka 10. framen.
 ```
+ python src/main.py 20 20 console 42 dfs dfs silent 10
+ ```
+
+seuraava tekee melkein saman interaktiivisesti wall_follower -algoritmilla näyttäen jokaisen framen.
+```
+ python src/main.py 20 20 console 43 dfs wall_follower interactive 1
+ ```
