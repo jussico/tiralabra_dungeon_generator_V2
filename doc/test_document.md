@@ -99,6 +99,8 @@ Tyhjissä sokkeloissa testataan että löydetty reitti on lyhin mahdollinen.
 
 ```bfs_randomized_test.py```
 
+Kuten edellä.
+
 ##### Dijkstran algoritmi
 
 ```dijkstra_test.py```
