@@ -25,11 +25,6 @@ class TestBfs(unittest.TestCase):
         self.assertEqual(solved, True)
         self.assertIsNotNone(route) # not empty
 
-        # self.main_class.main(['main.py', \
-        #     32, 16, 'dummy', 42, 'dfs', 'astar', 'silent', 1000])        
-
-        # self.assertEqual(True, True)
-
     def test_bfs_with_empty_maze(self):
         # create maze
         solving = Bfs()
