@@ -26,5 +26,15 @@ testpaths = [
   "tests"
 ]
 
+[tool.coverage.run]
+omit = [
+  "src/visualizer/*",
+  "src/solving/astar_jump_point.py",
+  "src/generation/common_generation.py",
+  "src/main.py",
+  "src/tools/maze_persister.py"
+]
+
 [dummy]
 addopts = "--ignore=tests_performance/*" 
+
