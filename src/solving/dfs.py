@@ -18,6 +18,7 @@ class Dfs(Base):
         visited = set()
 
         while stack:
+            
             x, y = stack.pop()
             visited.add((x,y))
             self.maze.taulukko[y][x].visited = True
@@ -38,6 +39,8 @@ class Dfs(Base):
                 if not self.maze.taulukko[neighbourg.y][neighbourg.x].visited:
                     naapuri = neighbourg.pair()        
                     stack.append(naapuri)
+
+            maze.frame = maze.frame + 1
 
         return self.maze.solved, None
 

@@ -16,13 +16,15 @@ class VideoVisualizer(BlackAndWhiteVideoVisualizer):
         if not self.initialized:
             super().video_init(maze)
             # color format values
-            self.steel = '7 7 7   '
-            self.rock = '5 5 5   '
+            # self.steel = '7 7 7   '
+            # self.rock = '5 5 5   '
+            self.steel = '5 5 5   '
+            self.rock = '9 9 9   '
             # empty = '  '
             self.empty = '0 0 0   '
             self.starting_place = '9 0 0   '
             self.ending_place = '0 9 0   '
-            self.visited_char = '2 2 2   '            
+            self.visited_char = '2 2 9   '            
 
     def create_file_header(self, cave, border):
         # https://en.wikipedia.org/wiki/Netpbm#File_formats
